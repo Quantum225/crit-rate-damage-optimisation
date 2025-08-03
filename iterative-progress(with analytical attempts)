@@ -55,7 +55,7 @@ for(x in 0:100){
 which.max(MEAN)-1
 max(MEAN)
 barplot(MEAN)
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Note that the method above is not consistent for small number of simulations
 #but has longer runtimes if number of simulations is large. So, we try an
 #analytic approach using probability formulas to determine the mean effective dmg
@@ -82,7 +82,7 @@ max(MEAN)
 barplot(MEAN)
 
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Now consider a case where if you are unable to land a critical strike, you are able
 #to reset the fight and try again until you land the critical strike, this is a concept
 #called "crit fishing". Of course your time is valuable so you will limit the 
@@ -117,7 +117,7 @@ barplot(MEAN)
 #A plot makes it easier to tell the distribution of allocation, and the general shape,
 #allowing you to deduce if an extreme result were due to some noise and estimate 
 #the real mean
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #As for the analytic approach:
 #We can use this formula for the pmf of a max for multiple bernoulli distributions:
 #P[M=1]=(1-p)^3,P[M=1+CD]=1-(1-CR)^3
@@ -133,7 +133,7 @@ which.max(MEAN)-1
 max(MEAN)
 barplot(MEAN)
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Now we consider where in each try of each simulation, there are multiple equal hits,
 #so now a higher crit rate is more valuable, as you want to land more critical strikes
 #in each simulation without sacrificing too much of the damage increase from
@@ -167,7 +167,7 @@ lines(rep(which.max(MEAN),100),seq(0,4,length.out=100),col="red")
 points(which.max(MEAN),max(MEAN),col='blue',pch=19)
 #Lines and points make it clearer where the maximum lies
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Analytically, this is getting more complex, instead of the distribution being 
 #the max of multiple bernoullis, it is now the max of i.i.d. binomial distributions, 
 #which can be calculated using this formula:
@@ -192,7 +192,7 @@ lines(seq(0,200,length.out=100),rep(max(MEAN),100),col="red")
 lines(rep(which.max(MEAN),100),seq(0,4,length.out=100),col="red")
 points(which.max(MEAN),max(MEAN),col='blue',pch=19)
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Can we now do, one where each hit can have different scalings or weightings?
 #In this case, we must find a way to be able to apply weighting to each of the unequal parts
 #And in cases of the critical strike, increase the damage in proportion to each of the
@@ -253,7 +253,7 @@ points(which.max(MEAN),max(MEAN),col='blue',pch=19)
 axis(1,at=seq(0,100,10),cex.axis=0.9)
 
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #This is getting very complex, the distribution of the prize amount is now max(X1,X2,...,Xn)
 #Where Xi ~ Σs_k*B_k  Where B_i is Bern(CR) and s_i are elements of the vector, 'split'
 #which represents the weighting of each hit
@@ -292,7 +292,7 @@ rbinom(nhits,1,CR)
 MEAN[68]
 
 
-
+~~(WIP)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Now let's consider a case, where you cannot choose your stat allocation freely, but you are
 #allowed to pick between two already built stat allocation, now considering the ATK stat
 #assume every hit scale directly proportionally with attack, and we want to maximise
@@ -326,6 +326,7 @@ mean(SIM)
 
 
 #c(0.3145,rep(0.2338,2),rep(0.2550,3),rep(0.1242,20),rep(0.2423,4)) basic attack chain
+
 
 
 
