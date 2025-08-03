@@ -288,16 +288,14 @@ rbinom(nhits,1,CR)*CD
 rbinom(nhits,1,CR)
 
 #Camellya:split=c(0.28,0.13,rep(0.24/32,32),rep(0.35/32,32))
-#Changli:
-split=c(1210,rep(820,2),rep(150,7),rep(300,2),130,200,rep(100,2),rep(72,10))/sum(c(1210,rep(820,2),rep(150,7),rep(300,2),130,200,rep(100,2),rep(72,10)))
-sum(split)
+#Changli:split=c(1210,rep(820,2),rep(150,7),rep(300,2),130,200,rep(100,2),rep(72,10))/sum(c(1210,rep(820,2),rep(150,7),rep(300,2),130,200,rep(100,2),rep(72,10))) sum(split)
 MEAN[68]
 
 
 
 #Now let's consider a case, where you cannot choose your stat allocation freely, but you are
-#allowed to pick between two already built stat allocation, now with the attack stat built in
-#assume all attack scale directly proportionally with attack, and we want to maximise
+#allowed to pick between two already built stat allocation, now considering the ATK stat
+#assume every hit scale directly proportionally with attack, and we want to maximise
 #crit fishing damage
 
 #stat parameters:
@@ -328,6 +326,7 @@ mean(SIM)
 
 
 #c(0.3145,rep(0.2338,2),rep(0.2550,3),rep(0.1242,20),rep(0.2423,4)) basic attack chain
+
 
 
 
