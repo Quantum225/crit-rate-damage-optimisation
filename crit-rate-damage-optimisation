@@ -1,6 +1,8 @@
 #Parameters:
 P=3.1
+#stats allocatable
 ntries=5
+#number of retries willing to make to get better damage output
 nsim=10000
 #number of simulations to calculate expectation, higher=more accuracy and more lag
 
