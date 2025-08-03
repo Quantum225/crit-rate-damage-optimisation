@@ -1,0 +1,52 @@
+#Parameters:
+P=3.1
+ntries=5
+nsim=10000
+#number of simulations to calculate expectation, higher=more accuracy and more lag
+
+split=rep(c(0.28,0.13,rep(0.24/32,32),rep(0.35/32,32))/2,2) #Camellya
+#We manually define the scaling/weightings of each hit, the sum of this vector
+#must equal one, which can be done by dividing the vector by it's sum
+#Our example here, has 2 big hits, represented by 0.28 and 0.13, and 2 sets
+#of many small hits, all repeated twice to represent 2 rotations.
+
+nhits=length(split)
+#Automatically adjusts nhits to match the number of hits in 'split'
+SIM=numeric(nsim)
+TRIES=numeric(ntries)
+MEAN=numeric(101)
+#initialise each vector used, so results from previous runs don't affect new results
+#and avoid '(vector) not found' when trying to add values to a vector that doesn't
+#yet exist
+
+for (x in 0:100) {
+  CR=0.01*x
+  CD=P-2*CR
+  #equations to represent trade-off between the two stats
+  
+  for (n in 1:nsim){
+    for (a in 1:ntries) {
+      TRIES[a]=sum((rbinom(nhits,1,CR)*CD+1)*split)
+      #In this small line of code, we simulate [nhit] bernoulli distributions,
+      #to decide the result of each strike (normal or critical) in split
+      #scale it to make the result (1,1+CD) instead of (0,1), and we apply
+      #element-wise multiplication with split, to get a resulting vector
+      #which represents the effective damage of each hit in a single try in a simulation
+      #and we sum it all to get the total effective damage in a single try
+      #and we store the result in a vector, TRIES, this is repeated [ntries] times
+    }
+    SIM[n]=max(TRIES)
+    #We take the maximum result of the tries
+  }
+  
+  
+  MEAN[x+1]=mean(SIM)
+  
+}
+cat('CR:',which.max(MEAN)-1,'%',' ','CD:',100*P-2*(which.max(MEAN)-1),'%');
+cat('effective dmg multiplier:',max(MEAN))
+barplot(MEAN,ylim=c(0,max(MEAN)+0.2),space=0)
+lines(seq(0,200,length.out=100),rep(max(MEAN),100),col="red")
+lines(rep(which.max(MEAN),100),seq(0,4,length.out=100),col="red")
+points(which.max(MEAN),max(MEAN),col='blue',pch=19)
+axis(1,at=seq(0,100,10),cex.axis=0.9)
